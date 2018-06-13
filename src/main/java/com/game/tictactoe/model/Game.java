@@ -44,7 +44,7 @@ public class Game implements Printable {
                 || position.getColumn()< 0 || position.getColumn() >= gameBoard.getSize()){
             throw new IllegalArgumentException("Position is out of range");
         }
-        if(gameBoard.getBoard()[position.getRow()][position.getColumn()] != '-'){
+        if(gameBoard.getBoard()[position.getRow()][position.getColumn()] != GameBoard.EMPTY){
             throw new IllegalArgumentException("Position is already marked");
         }
     }
@@ -61,8 +61,8 @@ public class Game implements Printable {
             System.out.println();
         }
     }
-    public boolean isActive(){
-        return this.counter < gameBoard.getSize()*gameBoard.getSize() ;
+    public boolean isGameOver(){
+        return !(this.counter < gameBoard.getSize()*gameBoard.getSize()) ;
     }
 
     public List<Player> getPlayers() {

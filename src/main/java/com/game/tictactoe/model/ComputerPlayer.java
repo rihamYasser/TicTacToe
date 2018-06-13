@@ -5,12 +5,8 @@ package com.game.tictactoe.model;
  */
 public class ComputerPlayer extends Player{
 
-    public ComputerPlayer(int index, char symbol,int next){
-        super ( index,  symbol, next);
+    public ComputerPlayer( char symbol,int next){
+        super (symbol, next);
     }
 
-    @Override
-    public Position play() {
-        return new Position(0,0);
-    }
 }

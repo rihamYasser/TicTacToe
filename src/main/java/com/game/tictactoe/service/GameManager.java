@@ -28,20 +28,21 @@ public class GameManager {
         return rn.nextInt(2);
     }
 
-    private void play(Game board) {
+    private void play(Game game) {
 
         int firstPlayer = getFirstPlayerNumber();
 
-        Player currentPlayer = board.getPlayers().get(firstPlayer);
+        Player currentPlayer = game.getPlayers().get(firstPlayer);
         System.out.println("Player ["+currentPlayer.getSymbol()+"] will start");
 
-        while(board.isActive()) {
+        while(!game.isGameOver()) {
 
-           // System.out.println("Player ["+currentPlayer.getSymbol()+"] turn");
+            System.out.println("Player ["+currentPlayer.getSymbol()+"] turn");
             try {
-                Position position = currentPlayer.play();
-                board.markBoard(position,currentPlayer);
-                if(winChecker.checkWinner(board.getGameBoard(),position,currentPlayer.getSymbol())){
+                Position position = currentPlayer.getPlayStrategy().play(
+                        game.getGameBoard(),currentPlayer.getSymbol());
+                game.markBoard(position,currentPlayer);
+                if(winChecker.checkWinner(game.getGameBoard(),position,currentPlayer.getSymbol())){
                     System.out.println("Player ["+currentPlayer.getSymbol()+"] wins!");
                     break;
                 }
@@ -50,7 +51,7 @@ public class GameManager {
                 System.out.println("Wrong Input!"+ex.getMessage());
                 continue;
             }
-            currentPlayer = board.getPlayers().get(currentPlayer.getNextPlayerNumber());
+            currentPlayer = game.getPlayers().get(currentPlayer.getNext());
         }
     }
 }

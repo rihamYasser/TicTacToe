@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Created by riham.y.abdelmaksoud on 6/13/2018.
  */
 public class GameBoard {
+    public static final char EMPTY = '-';
     private char[][] board;
     private int size;
 
@@ -13,7 +14,7 @@ public class GameBoard {
         this.size = size;
         board = new char[size][size];
         for(int x=0;x<board.length;x++)
-            Arrays.fill( board[x], '-' );
+            Arrays.fill( board[x], GameBoard.EMPTY );
     }
 
     public char[][] getBoard() {

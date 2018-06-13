@@ -4,6 +4,8 @@ import com.game.tictactoe.model.ComputerPlayer;
 import com.game.tictactoe.model.HumanPlayer;
 import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.Player;
+import com.game.tictactoe.service.ComputerRandomPlayStrategy;
+import com.game.tictactoe.service.HumanPlayStrategy;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -56,9 +58,14 @@ public class GameConfiguration {
         if(computerSymbol.equals(player1Symbol) || computerSymbol.equals(player2Symbol) ){
             throw new IllegalArgumentException("Please configure different symbol for each player");
         }
+        Player player1 = new HumanPlayer(player1Symbol.charAt(0),1);
+        player1.setPlayStrategy(new HumanPlayStrategy());
+        Player player2 = new HumanPlayer(player2Symbol.charAt(0),0);
+        player2.setPlayStrategy(new HumanPlayStrategy());
+        Player computer = new ComputerPlayer(computerSymbol.charAt(0),0);
+        computer.setPlayStrategy(new ComputerRandomPlayStrategy());
 
-        return Collections.unmodifiableList(Arrays.asList(new HumanPlayer(0,player1Symbol.charAt(0),1),
-                new HumanPlayer(1,player2Symbol.charAt(0),0)/*,new ComputerPlayer(2,computerSymbol.charAt(0),0)*/));
+        return Arrays.asList(player1,player2,computer);
     }
 
     private static int readSize(){

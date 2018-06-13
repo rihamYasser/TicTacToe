@@ -1,17 +1,19 @@
 package com.game.tictactoe.model;
+
+import com.game.tictactoe.service.PlayStrategy;
+
 /**
  * Created by riham.y.abdelmaksoud on 6/2/2018.
  */
-public abstract class Player implements Playing{
-    private int number;
+public abstract class Player{
     private char symbol;
     private boolean win;
-    private int nextPlayerNumber;
+    private int next;
+    private PlayStrategy playStrategy;
 
-    public Player(int index, char symbol,int next) {
-        this.number = index;
+    public Player(char symbol,int next) {
         this.symbol = symbol;
-        this.nextPlayerNumber = next;
+        this.next = next;
     }
 
     public char getSymbol() {
@@ -30,19 +32,19 @@ public abstract class Player implements Playing{
         this.win = win;
     }
 
-    public int getNumber() {
-        return number;
+    public int getNext() {
+        return next;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setNext(int next) {
+        this.next = next;
     }
 
-    public int getNextPlayerNumber() {
-        return nextPlayerNumber;
+    public PlayStrategy getPlayStrategy() {
+        return playStrategy;
     }
 
-    public void setNextPlayerNumber(int nextPlayerNumber) {
-        this.nextPlayerNumber = nextPlayerNumber;
+    public void setPlayStrategy(PlayStrategy playStrategy) {
+        this.playStrategy = playStrategy;
     }
 }
