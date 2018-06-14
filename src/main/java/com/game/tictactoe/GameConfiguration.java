@@ -60,7 +60,7 @@ public class GameConfiguration {
         }
         Player player1 = new HumanPlayer(player1Symbol.charAt(0),1);
         player1.setPlayStrategy(new HumanPlayStrategy());
-        Player player2 = new HumanPlayer(player2Symbol.charAt(0),0);
+        Player player2 = new HumanPlayer(player2Symbol.charAt(0),2);
         player2.setPlayStrategy(new HumanPlayStrategy());
         Player computer = new ComputerPlayer(computerSymbol.charAt(0),0);
         computer.setPlayStrategy(new ComputerRandomPlayStrategy());

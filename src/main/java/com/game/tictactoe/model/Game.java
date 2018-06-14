@@ -2,9 +2,7 @@ package com.game.tictactoe.model;
 
 import com.game.tictactoe.service.Printable;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/2/2018.
@@ -30,21 +28,14 @@ public class Game implements Printable {
         validatePosition(position);
         gameBoard.getBoard()[position.getRow()][position.getColumn()] = player.getSymbol();
         print();
-//        boolean win = checkWinner(row, col, player.getSymbol());
-//        if (win) {
-//            player.setWin(true);
-//            winner = player;
-//            this.win = true;
-//        }
         counter++;
     }
 
     private void validatePosition(Position position) {
-        if(position.getRow() <0 || position.getRow() >= gameBoard.getSize()
-                || position.getColumn()< 0 || position.getColumn() >= gameBoard.getSize()){
+        if(gameBoard.isOutOfBound(position)){
             throw new IllegalArgumentException("Position is out of range");
         }
-        if(gameBoard.getBoard()[position.getRow()][position.getColumn()] != GameBoard.EMPTY){
+        if(!gameBoard.isEmptyPosition(position.getRow(),position.getColumn())){
             throw new IllegalArgumentException("Position is already marked");
         }
     }
