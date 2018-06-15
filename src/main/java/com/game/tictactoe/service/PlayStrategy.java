@@ -1,7 +1,6 @@
 package com.game.tictactoe.service;
 
 import com.game.tictactoe.model.Game;
-import com.game.tictactoe.model.GameBoard;
 import com.game.tictactoe.model.Position;
 
 /**
@@ -9,5 +8,5 @@ import com.game.tictactoe.model.Position;
  */
 public interface PlayStrategy {
 
-    Position play(Game board , char symbol);
+    Position play(Game game , char symbol);
 }

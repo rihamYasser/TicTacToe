@@ -11,7 +11,7 @@ public class HumanPlayStrategy implements PlayStrategy {
 
     public static final String INPUT_SPLITTER = ",";
     @Override
-    public Position play(Game board, char symbol) {
+    public Position play(Game game, char symbol) {
         InputScanner.getScanner();
         String input = InputScanner.getScanner().next();
         return formatInput(input);

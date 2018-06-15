@@ -1,7 +1,8 @@
 package com.game.tictactoe.service;
 
+import com.game.tictactoe.model.Board;
 import com.game.tictactoe.model.Game;
-import com.game.tictactoe.model.GameBoard;
+import com.game.tictactoe.model.TwoDimensionalBoard;
 import com.game.tictactoe.model.Position;
 
 import java.util.Optional;
@@ -29,10 +30,10 @@ public class FullLineWinChecker implements WinChecker{
         return false;
     }
 
-    private boolean checkDiagonal(GameBoard board, char symbol) {
+    private boolean checkDiagonal(Board board, char symbol) {
         boolean win =false;
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getBoard()[i][i] != symbol) {
+            if (board.getCellValue(i,i) != symbol) {
                return false;
             }
             win = true;
@@ -40,11 +41,11 @@ public class FullLineWinChecker implements WinChecker{
         return win;
     }
 
-    private boolean checkReverseDiagonal(GameBoard board, char symbol) {
+    private boolean checkReverseDiagonal(Board board, char symbol) {
         int row = 0;
         int col = board.getSize()-1;
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getBoard()[row][col] != symbol) {
+            if (board.getCellValue(row,col) != symbol) {
                 return false;
             }
             row = row+1;
@@ -53,10 +54,10 @@ public class FullLineWinChecker implements WinChecker{
         return true;
     }
 
-    private boolean checkVertical(GameBoard board, int col, char symbol) {
+    private boolean checkVertical(Board board, int col, char symbol) {
         boolean win =false;
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getBoard()[i][col] != symbol) {
+            if (board.getCellValue(i,col) != symbol) {
                 return false;
             }
             win = true;
@@ -64,10 +65,10 @@ public class FullLineWinChecker implements WinChecker{
         return win;
     }
 
-    private boolean checkHorizontal(GameBoard board, int row, char symbol) {
+    private boolean checkHorizontal(Board board, int row, char symbol) {
         boolean win =false;
         for (int i = 0; i < board.getSize(); i++) {
-            if (board.getBoard()[row][i] != symbol) {
+            if (board.getCellValue(row,i) != symbol) {
                 return false;
             }
             win = true;

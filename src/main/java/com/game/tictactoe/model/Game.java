@@ -1,15 +1,14 @@
 package com.game.tictactoe.model;
 
-import com.game.tictactoe.service.Printable;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/2/2018.
  */
-public class Game implements Printable {
-    private GameBoard gameBoard;
+public class Game  {
+    private Board gameBoard;
     private List<Player> players;
     private Optional<Player> winner;
 
@@ -18,39 +17,22 @@ public class Game implements Printable {
     }
 
     public Game(int size) {
-        gameBoard = new GameBoard(size);
+        gameBoard = new TwoDimensionalBoard(size);
     }
 
     public void markBoard(Position position, Player player) {
-        validatePosition(position);
-        gameBoard.getBoard()[position.getRow()][position.getColumn()] = player.getSymbol();
-        print();
+        gameBoard.validatePosition(position);
+        gameBoard.markCell(position, player.getSymbol());
+        gameBoard.print();
     }
 
-    private void validatePosition(Position position) {
-        if(gameBoard.isOutOfBound(position)){
-            throw new IllegalArgumentException("Position is out of range");
-        }
-        if(!gameBoard.isEmptyPosition(position.getRow(),position.getColumn())){
-            throw new IllegalArgumentException("Position is already marked");
-        }
-    }
-
-    @Override
-    public void print() {
-        for( int row =0;row< gameBoard.getSize();row++) {
-            for (int col =0;col< gameBoard.getSize();col++) {
-                System.out.print(gameBoard.getBoard()[row][col]);
-                if(col != gameBoard.getSize()-1){
-                    System.out.print("|");
-                }
-            }
-            System.out.println();
-        }
+    public int getFirstPlayerNumber() {
+        Random rn = new Random();
+        return rn.nextInt(2);
     }
 
     public boolean isGameOver(){
-        return gameBoard.isFull();
+        return gameBoard.isFull() ;
     }
 
     public Optional<Player> getPlayer(char symbol){
@@ -69,11 +51,11 @@ public class Game implements Printable {
         this.players = players;
     }
 
-    public GameBoard getGameBoard() {
+    public Board getGameBoard() {
         return gameBoard;
     }
 
-    public void setGameBoard(GameBoard gameBoard) {
+    public void setGameBoard(Board gameBoard) {
         this.gameBoard = gameBoard;
     }
 
@@ -84,4 +66,5 @@ public class Game implements Printable {
     public void setWinner(Optional<Player> winner) {
         this.winner = winner;
     }
+
 }

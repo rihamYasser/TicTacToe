@@ -6,7 +6,6 @@ package com.game.tictactoe.model;
 public class Position {
     private int row;
     private int column;
-    private boolean best;
 
     public Position(int row,int column){
         this.row = row;
@@ -28,11 +27,4 @@ public class Position {
         this.column = column;
     }
 
-    public boolean isBest() {
-        return best;
-    }
-
-    public void setBest(boolean best) {
-        this.best = best;
-    }
 }
