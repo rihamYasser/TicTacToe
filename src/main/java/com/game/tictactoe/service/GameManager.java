@@ -40,9 +40,9 @@ public class GameManager {
             System.out.println("Player ["+currentPlayer.getSymbol()+"] turn");
             try {
                 Position position = currentPlayer.getPlayStrategy().play(
-                        game.getGameBoard(),currentPlayer.getSymbol());
+                        game,currentPlayer.getSymbol());
                 game.markBoard(position,currentPlayer);
-                if(winChecker.checkWinner(game.getGameBoard(),position,currentPlayer.getSymbol())){
+                if(winChecker.checkWinner(game,position,currentPlayer.getSymbol())){
                     System.out.println("Player ["+currentPlayer.getSymbol()+"] wins!");
                     break;
                 }
@@ -52,6 +52,9 @@ public class GameManager {
                 continue;
             }
             currentPlayer = game.getPlayers().get(currentPlayer.getNext());
+        }
+        if(!game.getWinner().isPresent()) {
+            System.out.println("Game Over!");
         }
     }
 }

@@ -1,8 +1,10 @@
 package com.game.tictactoe.service;
 
+import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.GameBoard;
 import com.game.tictactoe.model.Position;
 
+import java.util.Optional;
 import java.util.Random;
 
 /**
@@ -11,21 +13,16 @@ import java.util.Random;
 public class ComputerRandomPlayStrategy implements PlayStrategy {
 
     @Override
-    public Position play(GameBoard board, char symbol) {
-        Random rowRandom = new Random(board.getSize()-1);
-        Random colRandom = new Random(board.getSize()-1);
-        int row = rowRandom.nextInt();
-        int col = colRandom.nextInt();
-        while(!board.isEmptyPosition(row,col)){
-            row = rowRandom.nextInt();
-            col = colRandom.nextInt();
+    public Position play(Game game, char symbol) {
+        Optional<Position> position = game.getGameBoard().getFirstFreePosition();
+        if(position.isPresent()) {
+            return position.get();
+        } else {
+            throw new
+                    RuntimeException("Unexpected error occurred please try again! No " +
+                    "Free " +
+                    "Position for " +
+                    "computer to play :(");
         }
-//        int move = (int)(Math.random()*board.getSize()*board.getSize());
-//        while(board.getBoard()[move/board.getSize()][move%board.getSize()] != GameBoard.EMPTY) {
-//            move = (int) (Math.random() * (board.getSize()*board.getSize()));
-//        }
-//
-        return  new Position(col,row) ;
-
     }
 }

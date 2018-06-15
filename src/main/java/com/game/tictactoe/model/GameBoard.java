@@ -42,4 +42,25 @@ public class GameBoard {
                 || position.getColumn()< 0 || position.getColumn() >= this.size;
     }
 
+    public Optional<Position> getFirstFreePosition(){
+        for (int i =0; i<size ;i++){
+            for (int j =0; j<size ;j++){
+                if(isEmptyPosition(i,j)){
+                    return Optional.of(new Position(i,j));
+                }
+            }
+        }
+        return Optional.empty();
+    }
+    public boolean isFull(){
+        for (int i =0; i<size ;i++){
+            for (int j =0; j<size ;j++){
+                if(isEmptyPosition(i,j)){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 }

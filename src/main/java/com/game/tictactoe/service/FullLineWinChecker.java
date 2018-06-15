@@ -4,6 +4,8 @@ import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.GameBoard;
 import com.game.tictactoe.model.Position;
 
+import java.util.Optional;
+
 /**
  * Created by riham.y.abdelmaksoud on 6/13/2018.
  Implementation of WinChecker by checking that the whole horizontal, vertical, or Diagonal line is marked
@@ -12,19 +14,18 @@ import com.game.tictactoe.model.Position;
 public class FullLineWinChecker implements WinChecker{
 
     @Override
-    public Boolean checkWinner(GameBoard board, Position lastPosition, char symbol) {
+    public Boolean checkWinner(Game game, Position lastPosition, char symbol) {
 
-        if(checkHorizontal(board,lastPosition.getRow(),symbol)){
+        boolean win = checkHorizontal(game.getGameBoard(),lastPosition.getRow(),symbol)
+                || checkVertical(game.getGameBoard(), lastPosition.getColumn(),symbol)
+                || checkReverseDiagonal(game.getGameBoard(),symbol)
+                || checkDiagonal(game.getGameBoard(),symbol);
+
+        if(win){
+            game.setWinner(game.getPlayer(symbol));
             return true;
         }
-
-        if(checkVertical(board, lastPosition.getColumn(),symbol)){
-            return true;
-        }
-        if (lastPosition.getColumn() == lastPosition.getRow()) {
-            return checkDiagonal(board,symbol);
-
-        }
+        game.setWinner(Optional.empty());
         return false;
     }
 
@@ -32,20 +33,31 @@ public class FullLineWinChecker implements WinChecker{
         boolean win =false;
         for (int i = 0; i < board.getSize(); i++) {
             if (board.getBoard()[i][i] != symbol) {
-                win = false;
-                break;
+               return false;
             }
             win = true;
         }
         return win;
     }
 
+    private boolean checkReverseDiagonal(GameBoard board, char symbol) {
+        int row = 0;
+        int col = board.getSize()-1;
+        for (int i = 0; i < board.getSize(); i++) {
+            if (board.getBoard()[row][col] != symbol) {
+                return false;
+            }
+            row = row+1;
+            col= col-1;
+        }
+        return true;
+    }
+
     private boolean checkVertical(GameBoard board, int col, char symbol) {
         boolean win =false;
         for (int i = 0; i < board.getSize(); i++) {
             if (board.getBoard()[i][col] != symbol) {
-                win = false;
-                break;
+                return false;
             }
             win = true;
         }
@@ -56,8 +68,7 @@ public class FullLineWinChecker implements WinChecker{
         boolean win =false;
         for (int i = 0; i < board.getSize(); i++) {
             if (board.getBoard()[row][i] != symbol) {
-                win = false;
-                break;
+                return false;
             }
             win = true;
         }

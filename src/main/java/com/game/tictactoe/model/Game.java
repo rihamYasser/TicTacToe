@@ -3,18 +3,15 @@ package com.game.tictactoe.model;
 import com.game.tictactoe.service.Printable;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/2/2018.
  */
 public class Game implements Printable {
-    GameBoard gameBoard;
+    private GameBoard gameBoard;
     private List<Player> players;
-    boolean win;
-    Player winner;
-    //counter for number of play times
-    int counter;
-    boolean active;
+    private Optional<Player> winner;
 
     public Game() {
 
@@ -28,7 +25,6 @@ public class Game implements Printable {
         validatePosition(position);
         gameBoard.getBoard()[position.getRow()][position.getColumn()] = player.getSymbol();
         print();
-        counter++;
     }
 
     private void validatePosition(Position position) {
@@ -52,10 +48,19 @@ public class Game implements Printable {
             System.out.println();
         }
     }
+
     public boolean isGameOver(){
-        return !(this.counter < gameBoard.getSize()*gameBoard.getSize()) ;
+        return gameBoard.isFull();
     }
 
+    public Optional<Player> getPlayer(char symbol){
+        for (Player player:this.players){
+            if(player.getSymbol() == symbol){
+                return Optional.of(player);
+            }
+        }
+        return Optional.empty();
+    }
     public List<Player> getPlayers() {
         return players;
     }
@@ -70,5 +75,13 @@ public class Game implements Printable {
 
     public void setGameBoard(GameBoard gameBoard) {
         this.gameBoard = gameBoard;
+    }
+
+    public Optional<Player> getWinner() {
+        return winner;
+    }
+
+    public void setWinner(Optional<Player> winner) {
+        this.winner = winner;
     }
 }

@@ -9,5 +9,5 @@ import com.game.tictactoe.model.Position;
  */
 public interface PlayStrategy {
 
-    Position play(GameBoard board , char symbol);
+    Position play(Game board , char symbol);
 }

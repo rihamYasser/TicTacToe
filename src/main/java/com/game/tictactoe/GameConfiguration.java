@@ -4,6 +4,7 @@ import com.game.tictactoe.model.ComputerPlayer;
 import com.game.tictactoe.model.HumanPlayer;
 import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.Player;
+import com.game.tictactoe.service.ComputerEasyPlayStrategy;
 import com.game.tictactoe.service.ComputerRandomPlayStrategy;
 import com.game.tictactoe.service.HumanPlayStrategy;
 
@@ -29,7 +30,6 @@ public class GameConfiguration {
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(CONFIG_FILE_NAME);
 
     public static Game configure(){
-        ResourceBundle resourceBundle = ResourceBundle.getBundle(CONFIG_FILE_NAME);
         Game board = new Game(readSize());
         board.setPlayers(initializePlayers());
         return board;
@@ -60,12 +60,12 @@ public class GameConfiguration {
         }
         Player player1 = new HumanPlayer(player1Symbol.charAt(0),1);
         player1.setPlayStrategy(new HumanPlayStrategy());
-        Player player2 = new HumanPlayer(player2Symbol.charAt(0),2);
-        player2.setPlayStrategy(new HumanPlayStrategy());
+//        Player player2 = new HumanPlayer(player2Symbol.charAt(0),2);
+//        player2.setPlayStrategy(new HumanPlayStrategy());
         Player computer = new ComputerPlayer(computerSymbol.charAt(0),0);
-        computer.setPlayStrategy(new ComputerRandomPlayStrategy());
+        computer.setPlayStrategy(new ComputerEasyPlayStrategy());
 
-        return Arrays.asList(player1,player2,computer);
+        return Arrays.asList(player1,/*player2,*/computer);
     }
 
     private static int readSize(){
