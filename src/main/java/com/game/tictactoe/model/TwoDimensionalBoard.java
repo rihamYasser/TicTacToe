@@ -1,5 +1,7 @@
 package com.game.tictactoe.model;
 
+import com.game.tictactoe.exception.InvalidBoardPositionException;
+
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -71,10 +73,10 @@ public class TwoDimensionalBoard implements Board {
     @Override
     public void validatePosition(Position position) {
         if(isOutOfBound(position)){
-            throw new IllegalArgumentException("Position is out of range");
+            throw new InvalidBoardPositionException("Position is out of range");
         }
         if(!isEmptyPosition(position.getRow(),position.getColumn())){
-            throw new IllegalArgumentException("Position is already marked");
+            throw new InvalidBoardPositionException("Position is already marked");
         }
     }
 

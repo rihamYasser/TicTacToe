@@ -1,9 +1,11 @@
 package com.game.tictactoe;
 
+import com.game.tictactoe.exception.InvalidConfigurationException;
 import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.Player;
 import com.game.tictactoe.service.ComputerSimplePlayStrategy;
 import com.game.tictactoe.service.HumanPlayStrategy;
+import com.game.tictactoe.util.ResourceBundles;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,9 +23,9 @@ public class GameFactory {
     private static final String PLAYER_2_SYMBOL_PROPERTY = "player2.symbol";
     private static final String PLAYER_COMPUTER_SYMBOL_PROPERTY = "computer.symbol";
     private static final int PLAY_BOARD_DEFAULT_SIZE = 3;
-    private static final int PLAYER_CHARACTER_LINE_NUM = 1;
 
-    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(CONFIG_FILE_NAME);
+    private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(
+            ResourceBundles.CONFIG.getBundleName());
 
 
     public static Game createTicTacToeGame(){
@@ -36,23 +38,23 @@ public class GameFactory {
 
         String player1Symbol = resourceBundle.getString(PLAYER_1_SYMBOL_PROPERTY);
         if(player1Symbol == null || player1Symbol.length() == 0 ){
-            throw new IllegalArgumentException("Missing Player1 symbol property");
+            throw new InvalidConfigurationException("Missing Player1 symbol property");
         }
 
         String player2Symbol = resourceBundle.getString(PLAYER_2_SYMBOL_PROPERTY);
         if(player2Symbol == null || player2Symbol.length() == 0 ){
-            throw new IllegalArgumentException("Missing Player2 symbol property");
+            throw new InvalidConfigurationException("Missing Player2 symbol property");
         }
         if(player2Symbol.equals(player1Symbol)){
-            throw new IllegalArgumentException("Please configure different symbol for each player");
+            throw new InvalidConfigurationException("Please configure different symbol for each player");
         }
 
         String computerSymbol = resourceBundle.getString(PLAYER_COMPUTER_SYMBOL_PROPERTY);
         if(computerSymbol == null || computerSymbol.length() == 0 ){
-            throw new IllegalArgumentException("Missing Computer symbol property");
+            throw new InvalidConfigurationException("Missing Computer symbol property");
         }
         if(computerSymbol.equals(player1Symbol) || computerSymbol.equals(player2Symbol) ){
-            throw new IllegalArgumentException("Please configure different symbol for each player");
+            throw new InvalidConfigurationException("Please configure different symbol for each player");
         }
         Player player1 = new Player(player1Symbol.charAt(0), 1) ;
         player1.setPlayStrategy(new HumanPlayStrategy());

@@ -1,5 +1,6 @@
 package com.game.tictactoe;
 
+import com.game.tictactoe.exception.InvalidBoardPositionException;
 import com.game.tictactoe.model.Board;
 import com.game.tictactoe.model.Position;
 import com.game.tictactoe.model.TwoDimensionalBoard;
@@ -71,14 +72,14 @@ public class TwoDimensionalBoardTest {
         Assert.assertTrue(board.isFull());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidBoardPositionException.class)
     public void validatePositionForNonEmptyCellTest() {
         TwoDimensionalBoard board = new TwoDimensionalBoard(SIZE);
         board.getCells()[1][2] = 'X';
         board.validatePosition(new Position(1,2));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = InvalidBoardPositionException.class)
     public void validatePositionForOutOfBoundCellTest() {
         TwoDimensionalBoard board = new TwoDimensionalBoard(SIZE);
         board.validatePosition(new Position(5,2));
