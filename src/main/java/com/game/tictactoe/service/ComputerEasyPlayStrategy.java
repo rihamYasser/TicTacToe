@@ -19,10 +19,10 @@ public class ComputerEasyPlayStrategy implements PlayStrategy {
         }
         try {
             return winOrBlockHorizontal(game.getGameBoard()).orElseGet(() -> winOrBlockVertical(game.getGameBoard()).orElseGet(()
-                    -> (winOrPreventDiagonal
+                    -> (winOrBlockDiagonal
                     (game.getGameBoard())
                     .orElseGet
-                            (() -> winOrPreventReverseDiagonal(game.getGameBoard()).orElse(game.getGameBoard().getFirstFreePosition().get())))));
+                            (() -> winOrBlockReverseDiagonal(game.getGameBoard()).orElse(game.getGameBoard().getFirstFreePosition().get())))));
         }catch (Exception ex){
            throw new RuntimeException("Unexpected error occurred please try again!");
         }
@@ -74,7 +74,7 @@ public class ComputerEasyPlayStrategy implements PlayStrategy {
         return Optional.empty();
     }
 
-    public Optional<Position> winOrPreventDiagonal(Board board) {
+    public Optional<Position> winOrBlockDiagonal(Board board) {
         int index = -1;
         int diagonalCellsCounter = 0;
         char firstSymbolInDiagonal =board.getCellValue(0,0);
@@ -97,7 +97,7 @@ public class ComputerEasyPlayStrategy implements PlayStrategy {
 
         return Optional.empty();
     }
-    public Optional<Position> winOrPreventReverseDiagonal(Board board) {
+    public Optional<Position> winOrBlockReverseDiagonal(Board board) {
 
         int selectedRow = -1, selectedCol =-1;
         int row = 0;

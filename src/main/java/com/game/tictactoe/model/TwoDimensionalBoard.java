@@ -13,8 +13,9 @@ public class TwoDimensionalBoard implements Board {
     public TwoDimensionalBoard(int size) {
         this.size = size;
         cells = new char[size][size];
-        for(int x = 0; x< cells.length; x++)
-            Arrays.fill( cells[x], EMPTY );
+        for(int x = 0; x< cells.length; x++) {
+            Arrays.fill(cells[x], EMPTY);
+        }
     }
 
     public char[][] getCells() {

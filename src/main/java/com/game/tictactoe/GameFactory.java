@@ -22,7 +22,6 @@ public class GameFactory {
     private static final int PLAY_BOARD_DEFAULT_SIZE = 3;
     private static final int PLAYER_CHARACTER_LINE_NUM = 1;
 
-    //TODO check better static loading?
     private static final ResourceBundle resourceBundle = ResourceBundle.getBundle(CONFIG_FILE_NAME);
 
 
