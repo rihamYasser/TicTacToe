@@ -4,7 +4,7 @@ import com.game.tictactoe.model.Board;
 import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.Position;
 import com.game.tictactoe.model.TwoDimensionalBoard;
-import com.game.tictactoe.service.ComputerEasyPlayStrategy;
+import com.game.tictactoe.service.ComputerSimplePlayStrategy;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ import org.junit.Test;
  */
 public class ComputerEasyPlayStrategyTest {
 
-    ComputerEasyPlayStrategy easyPlayStrategy = new ComputerEasyPlayStrategy();
+    ComputerSimplePlayStrategy easyPlayStrategy = new ComputerSimplePlayStrategy();
 
     @Test
     public void playTest(){

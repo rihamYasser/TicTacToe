@@ -5,6 +5,7 @@ import java.util.Optional;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/13/2018.
+ * Implementation for Game Board in 2-D array cells
  */
 public class TwoDimensionalBoard implements Board {
     private char[][] cells;

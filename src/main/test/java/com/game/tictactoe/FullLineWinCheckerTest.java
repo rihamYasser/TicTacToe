@@ -3,7 +3,7 @@ package com.game.tictactoe;
 import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.Player;
 import com.game.tictactoe.model.Position;
-import com.game.tictactoe.service.ComputerEasyPlayStrategy;
+import com.game.tictactoe.service.ComputerSimplePlayStrategy;
 import com.game.tictactoe.service.FullLineWinChecker;
 import com.game.tictactoe.service.HumanPlayStrategy;
 import org.junit.Assert;
@@ -99,7 +99,7 @@ public class FullLineWinCheckerTest {
         Player player1 = new Player('X', 1) ;
         player1.setPlayStrategy(new HumanPlayStrategy());
         Player player2 = new Player('Y',2);
-        player2.setPlayStrategy(new ComputerEasyPlayStrategy());
+        player2.setPlayStrategy(new ComputerSimplePlayStrategy());
         game.setPlayers(Arrays.asList(player1,player2));
     }
 

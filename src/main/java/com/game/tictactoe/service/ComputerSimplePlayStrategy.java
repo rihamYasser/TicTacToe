@@ -9,8 +9,13 @@ import java.util.Optional;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/13/2018.
+ *
+ * Simple Play Strategy for Non-Smart Silly computer:(
+ * It just blocks the other players from winning
+ * It block others from winning rather than search for move to win
+ * It doesn't select or prevent fork move
  */
-public class ComputerEasyPlayStrategy implements PlayStrategy {
+public class ComputerSimplePlayStrategy implements PlayStrategy {
 
     @Override
     public Position play(Game game, char symbol) {
@@ -27,6 +32,7 @@ public class ComputerEasyPlayStrategy implements PlayStrategy {
            throw new RuntimeException("Unexpected error occurred please try again!");
         }
     }
+
 
     public Optional<Position> winOrBlockHorizontal(Board board) {
         Optional<Position> position ;

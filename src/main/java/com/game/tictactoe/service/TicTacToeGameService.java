@@ -6,6 +6,7 @@ import com.game.tictactoe.model.Position;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/12/2018.
+ * Tic-Tac-Toe Game service responsible for managing the game
  */
 public class TicTacToeGameService implements GameService {
 

@@ -7,6 +7,7 @@ import java.util.Optional;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/13/2018.
+ * Play Strategy Implementation for play in first free position
  */
 public class ComputerRandomPlayStrategy implements PlayStrategy {
 

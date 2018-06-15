@@ -2,7 +2,7 @@ package com.game.tictactoe;
 
 import com.game.tictactoe.model.Game;
 import com.game.tictactoe.model.Player;
-import com.game.tictactoe.service.ComputerEasyPlayStrategy;
+import com.game.tictactoe.service.ComputerSimplePlayStrategy;
 import com.game.tictactoe.service.HumanPlayStrategy;
 
 import java.util.Arrays;
@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/12/2018.
+ * Tic-Tac-Toe Game Factory
  */
 public class GameFactory {
 
@@ -58,7 +59,7 @@ public class GameFactory {
         Player player2 = new Player(player2Symbol.charAt(0),2);
         player2.setPlayStrategy(new HumanPlayStrategy());
         Player computer = new Player(computerSymbol.charAt(0), 0) ;
-        computer.setPlayStrategy(new ComputerEasyPlayStrategy());
+        computer.setPlayStrategy(new ComputerSimplePlayStrategy());
 
         return Arrays.asList(player1,player2,computer);
     }

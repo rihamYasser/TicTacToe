@@ -9,7 +9,8 @@ import java.util.Optional;
 
 /**
  * Created by riham.y.abdelmaksoud on 6/13/2018.
- Implementation of WinChecker by checking that the whole horizontal, vertical, or Diagonal line is marked
+  WinChecker Implementation
+  check winning by checking that whole horizontal, vertical, Diagonal, or reverse Diagonal line is marked
  */
 
 public class FullLineWinChecker implements WinChecker{
